@@ -1,21 +1,27 @@
-import './App.css';
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <main>
+      // header
+      <header>
+        <div>
+          <h2>Faktury</h2>
+        </div>
+
+        <div>
+          <ul>
+            <li>Drukuj</li>
+            <li>Pobierz</li>
+            <li>Wyślij</li>
+          </ul>
+        </div>
       </header>
+      //end of header
+      //szczegóły
+      <section>
+        <input type="text" name="text" id="text" placeholder="Podaj swoje imię" required/>
+      </section>
+      </main>
     </div>
   );
 }
