@@ -1,10 +1,11 @@
 import React from 'react'
 
-export default function MainDetails() {
+export default function MainDetails({name, address, nip}) {
   return (
     <section className='flex flex-col items-end justify-end'>
-        <h2 className='text-xl uppercase'>Dominik Soj</h2>
-        <p>Moj Adres</p>
+        <h2 className='font-bold text-xl uppercase md:text-4'>{name}</h2>
+        <p>{nip}</p>
+        <p>{address}</p>
     </section>
   )
 }
