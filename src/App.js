@@ -48,7 +48,7 @@ function App() {
   },[])
 
   return (
-      <main className='m-5 p-5 xl:max-w-4xl xl:mx-auto bg-white rounded shadow'>
+      <main className='m-5 p-5 md:max-w-xl md:mx-auto lg:max-w-2xl xl:max-w-4xl bg-white rounded shadow'>
         {showInvoice ? <div>
           <Header handlePrint={handlePrint}/>
           <MainDetails name={name} address={address} nip={nip}/>
