@@ -29,7 +29,7 @@ export default function TableForm({
     calcKwotaVat(kwotaVat);
 
     const calcWarBrutto = (warBrutto) => {
-      setWarBrutto((cenaNetto + kwotaVat) * ilosc);
+      setWarBrutto(warNetto + kwotaVat);
     };
     calcWarBrutto(warBrutto);
   }, [warNetto, cenaNetto, ilosc, vat]);
