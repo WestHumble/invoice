@@ -8,6 +8,7 @@ import Table from "./components/Table";
 import MainDetails from "./components/MainDetails";
 import ClientDetails from "./components/ClientDetails";
 import Dates from "./components/Dates";
+import TableForm from "./components/TableForm";
 
 function App() {
   const [showInvoice, setShowInvoice] = useState(false);
@@ -25,16 +26,23 @@ function App() {
   const [invoiceDate, setInvoiceDate] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [notes, setNotes] = useState("");
+  const [nazwa, setNazwa] = useState("");
+  const [ilosc, setIlosc] = useState("");
+  const [vat, setVat] = useState("");
+  const [cenaNetto, setCenaNetto] = useState("");
+  const [warNetto, setWarNetto] = useState("");
+  const [kwotaVat, setKwotaVat] = useState("");
+  const [warBrutto, setWarBrutto] = useState("");
 
   const handlePrint = () => {
     window.print();
   };
 
   useEffect(() => {
-    setName("DRS Design");
-    setNip("781 203 70 20");
-    setAddress("Mrowino");
-    setEmail("domsoj@gmail.com");
+    setName("FirmaX");
+    setNip("781 000 40 10");
+    setAddress("Poznań");
+    setEmail("testowy@gmail.com");
     setPhone("700200200");
     setBankName("PKO");
     setBankAccount("76 1000 1010 1010 1000 1010 1010");
@@ -61,7 +69,15 @@ function App() {
             invoiceDate={invoiceDate}
             dueDate={dueDate}
           />
-          <Table />
+          <Table
+            nazwa={nazwa}
+            ilosc={ilosc}
+            vat={vat}
+            cenaNetto={cenaNetto}
+            warNetto={warNetto}
+            kwotaVat={kwotaVat}
+            warBrutto={warBrutto}
+          />
           <Notes notes={notes} />
           <Footer
             name={name}
@@ -161,111 +177,152 @@ function App() {
               </div>
             </article>
 
-            <label htmlFor="bankName" className="font-bold">
-              Podaj nazwę banku firmy
-            </label>
-            <input
-              type="text"
-              name="bankName"
-              id="bankName"
-              placeholder="Nazwa banku"
-              autoComplete="off"
-              value={bankName}
-              onChange={(e) => setBankName(e.target.value)}
-            />
+            <article className="md:grid grid-cols-2 gap-10">
+              <div className="flex flex-col">
+                <label htmlFor="bankName" className="font-bold">
+                  Podaj nazwę banku firmy
+                </label>
+                <input
+                  type="text"
+                  name="bankName"
+                  id="bankName"
+                  placeholder="Nazwa banku"
+                  autoComplete="off"
+                  value={bankName}
+                  onChange={(e) => setBankName(e.target.value)}
+                />
+              </div>
 
-            <label htmlFor="bankAccount" className="font-bold">
-              Podaj numer konta bankowego firmy
-            </label>
-            <input
-              type="text"
-              name="bankAccount"
-              id="bankAccount"
-              placeholder="Numer konta bankowego"
-              autoComplete="off"
-              value={bankAccount}
-              onChange={(e) => setBankAccount(e.target.value)}
-            />
+              <div className="flex flex-col">
+                <label htmlFor="bankAccount" className="font-bold">
+                  Podaj numer konta bankowego firmy
+                </label>
+                <input
+                  type="text"
+                  name="bankAccount"
+                  id="bankAccount"
+                  placeholder="Numer konta bankowego"
+                  autoComplete="off"
+                  value={bankAccount}
+                  onChange={(e) => setBankAccount(e.target.value)}
+                />
+              </div>
+            </article>
 
             {/* Informacje o kliencie */}
-            <label htmlFor="clientName" className="font-bold">
-              Podaj nazwę firmy klienta
-            </label>
-            <input
-              type="text"
-              name="clientName"
-              id="clientName"
-              placeholder="Nazwa firmy klienta"
-              autoComplete="off"
-              value={clientName}
-              onChange={(e) => setClientName(e.target.value)}
-            />
+            <article className="md:grid grid-cols-2 gap-x-10 md:mt-20">
+              <div className="flex flex-col">
+                <label htmlFor="clientName" className="font-bold">
+                  Podaj nazwę firmy klienta
+                </label>
+                <input
+                  type="text"
+                  name="clientName"
+                  id="clientName"
+                  placeholder="Nazwa firmy klienta"
+                  autoComplete="off"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                />
+              </div>
 
-            <label htmlFor="clientNip" className="font-bold">
-              Podaj NIP klienta
-            </label>
-            <input
-              type="text"
-              name="clientNip"
-              id="clientNip"
-              placeholder="NIP firmy klienta"
-              autoComplete="off"
-              value={clientNip}
-              onChange={(e) => setClientNip(e.target.value)}
-            />
-
-            <label htmlFor="clientAddress" className="font-bold">
-              Podaj adres firmy klienta
-            </label>
-            <input
-              type="text"
-              name="clientAddress"
-              id="clientAddress"
-              placeholder="Adres firmy klienta"
-              autoComplete="off"
-              value={clientAddress}
-              onChange={(e) => setClientAddress(e.target.value)}
-            />
+              <div className="flex flex-col">
+                <label htmlFor="clientNip" className="font-bold">
+                  Podaj NIP klienta
+                </label>
+                <input
+                  type="text"
+                  name="clientNip"
+                  id="clientNip"
+                  placeholder="NIP firmy klienta"
+                  autoComplete="off"
+                  value={clientNip}
+                  onChange={(e) => setClientNip(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="clientAddress" className="font-bold">
+                  Podaj adres firmy klienta
+                </label>
+                <input
+                  type="text"
+                  name="clientAddress"
+                  id="clientAddress"
+                  placeholder="Adres firmy klienta"
+                  autoComplete="off"
+                  value={clientAddress}
+                  onChange={(e) => setClientAddress(e.target.value)}
+                />
+              </div>
+            </article>
 
             {/* Informacje o fakturze */}
-            <label htmlFor="invoiceNumber" className="font-bold">
-              Podaj numer faktury
-            </label>
-            <input
-              type="text"
-              name="invoiceNumber"
-              id="invoiceNumber"
-              placeholder="Numer faktury"
-              autoComplete="off"
-              value={invoiceNumber}
-              onChange={(e) => setInvoiceNumber(e.target.value)}
-            />
+            <article className="grid grid-cols-3 gap-10">
+              <div className="flex flex-col">
+                <label htmlFor="invoiceNumber" className="font-bold">
+                  Podaj numer faktury
+                </label>
+                <input
+                  type="text"
+                  name="invoiceNumber"
+                  id="invoiceNumber"
+                  placeholder="Numer faktury"
+                  autoComplete="off"
+                  value={invoiceNumber}
+                  onChange={(e) => setInvoiceNumber(e.target.value)}
+                />
+              </div>
 
-            <label htmlFor="invoiceDate" className="font-bold">
-              Podaj datę wystawienia faktury
-            </label>
-            <input
-              type="date"
-              name="invoiceDate"
-              id="invoiceDate"
-              placeholder="Data wystawienia faktury"
-              autoComplete="off"
-              value={invoiceDate}
-              onChange={(e) => setInvoiceDate(e.target.value)}
-            />
+              <div className="flex flex-col">
+                <label htmlFor="invoiceDate" className="font-bold">
+                  Podaj datę wystawienia faktury
+                </label>
+                <input
+                  type="date"
+                  name="invoiceDate"
+                  id="invoiceDate"
+                  placeholder="Data wystawienia faktury"
+                  autoComplete="off"
+                  value={invoiceDate}
+                  onChange={(e) => setInvoiceDate(e.target.value)}
+                />
+              </div>
 
-            <label htmlFor="dueDate" className="font-bold">
-              Podaj datę opłacenia faktury
-            </label>
-            <input
-              type="date"
-              name="dueDate"
-              id="dueDate"
-              placeholder="Data opłacenia faktury"
-              autoComplete="off"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
-            />
+              <div className="flex flex-col">
+                <label htmlFor="dueDate" className="font-bold">
+                  Podaj datę opłacenia faktury
+                </label>
+                <input
+                  type="date"
+                  name="dueDate"
+                  id="dueDate"
+                  placeholder="Data opłacenia faktury"
+                  autoComplete="off"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                />
+              </div>
+            </article>
+
+            {/* Tabelka */}
+            <article>
+              <TableForm
+                nazwa={nazwa}
+                setNazwa={setNazwa}
+                ilosc={ilosc}
+                setIlosc={setIlosc}
+                vat={vat}
+                setVat={setVat}
+                cenaNetto={cenaNetto}
+                setCenaNetto={setCenaNetto}
+                warNetto={warNetto}
+                setWarNetto={setWarNetto}
+                kwotaVat={kwotaVat}
+                setKwotaVat={setKwotaVat}
+                warBrutto={warBrutto}
+                setWarBrutto={setWarBrutto}
+              />
+            </article>
 
             {/* Notatki */}
             <label htmlFor="notes" className="font-bold">
