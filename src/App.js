@@ -27,12 +27,12 @@ function App() {
   const [dueDate, setDueDate] = useState("");
   const [notes, setNotes] = useState("");
   const [nazwa, setNazwa] = useState("");
-  const [ilosc, setIlosc] = useState("");
-  const [vat, setVat] = useState("");
-  const [cenaNetto, setCenaNetto] = useState("");
-  const [warNetto, setWarNetto] = useState("");
-  const [kwotaVat, setKwotaVat] = useState("");
-  const [warBrutto, setWarBrutto] = useState("");
+  const [ilosc, setIlosc] = useState(0);
+  const [vat, setVat] = useState(0);
+  const [cenaNetto, setCenaNetto] = useState(0);
+  const [warNetto, setWarNetto] = useState(0);
+  const [kwotaVat, setKwotaVat] = useState(0);
+  const [warBrutto, setWarBrutto] = useState(0);
 
   const handlePrint = () => {
     window.print();

@@ -28,8 +28,9 @@ export default function TableForm({
     };
     calcKwotaVat(kwotaVat);
 
+    const wszystko = parseFloat(cenaNetto) + parseFloat(kwotaVat);
     const calcWarBrutto = (warBrutto) => {
-      setWarBrutto(warNetto + kwotaVat);
+      setWarBrutto((wszystko * ilosc).toFixed(2));
     };
     calcWarBrutto(warBrutto);
   }, [warNetto, cenaNetto, ilosc, vat]);
@@ -83,15 +84,36 @@ export default function TableForm({
         </div>
         <div className="flex flex-col">
           <label htmlFor="cenaNetto">Wartość netto</label>
-          <p>{warNetto}</p>
+          <input
+            type="number"
+            name="warNetto"
+            id="warNetto"
+            value={warNetto}
+            onChange={(e) => setKwotaVat(e.target.value)}
+            disabled
+          />
         </div>
         <div className="flex flex-col">
           <label htmlFor="cenaNetto">Kwota Vat</label>
-          <p>{kwotaVat}</p>
+          <input
+            type="number"
+            name="kwotaVat"
+            id="kwotaVat"
+            value={kwotaVat}
+            onChange={(e) => setKwotaVat(e.target.value)}
+            disabled
+          />
         </div>
         <div className="flex flex-col">
           <label htmlFor="cenaNetto">Wartość brutto</label>
-          <p>{warBrutto}</p>
+          <input
+            type="number"
+            name="warBrutto"
+            id="warBrutto"
+            value={warBrutto}
+            onChange={(e) => setKwotaVat(e.target.value)}
+            disabled
+          />
         </div>
       </div>
     </>
