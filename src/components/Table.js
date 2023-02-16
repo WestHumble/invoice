@@ -3,16 +3,16 @@ import React from "react";
 export default function Table({ list, total }) {
   return (
     <>
-      <table width="100%" className="mb-10 text-center">
-        <thead>
+      <table className="mb-10 text-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr className="bg-gray-200">
-            <th>Nazwa</th>
-            <th>Ilość</th>
-            <th>Stawka VAT</th>
-            <th>Cenna netto</th>
-            <th>Wartość netto</th>
-            <th>Kwota VAT</th>
-            <th>Wartość brutto</th>
+            <th className="px-6 py-3">Nazwa</th>
+            <th className="px-6 py-3">Ilość</th>
+            <th className="px-6 py-3">Stawka VAT</th>
+            <th className="px-6 py-3">Cenna netto</th>
+            <th className="px-6 py-3">Wartość netto</th>
+            <th className="px-6 py-3">Kwota VAT</th>
+            <th className="px-6 py-3">Wartość brutto</th>
           </tr>
         </thead>
         <tbody>
@@ -28,14 +28,14 @@ export default function Table({ list, total }) {
               warBrutto,
             }) => (
               <React.Fragment key={id}>
-                <tr>
-                  <td>{nazwa}</td>
-                  <td>{ilosc}</td>
-                  <td>{vat}</td>
-                  <td>{cenaNetto}</td>
-                  <td>{warNetto}</td>
-                  <td>{kwotaVat}</td>
-                  <td>{warBrutto}</td>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <td className="px-6 py-4">{nazwa}</td>
+                  <td className="px-6 py-4">{ilosc}</td>
+                  <td className="px-6 py-4">{vat}</td>
+                  <td className="px-6 py-4">{cenaNetto}</td>
+                  <td className="px-6 py-4">{warNetto}</td>
+                  <td className="px-6 py-4">{kwotaVat}</td>
+                  <td className="px-6 py-4">{warBrutto}</td>
                 </tr>
               </React.Fragment>
             )

@@ -31,7 +31,7 @@ export default function Footer({
           <span className="font-bold">Bank:</span> {bankName}
         </li>
         <li>
-          <span className="font-bold">Imię posiadacza rachunku:</span> Dominik
+          <span className="font-bold">Imię posiadacza rachunku:</span>
         </li>
         <li>
           <span className="font-bold">Numer konta:</span> {bankAccount}
