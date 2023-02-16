@@ -103,6 +103,9 @@ function App() {
         <>
           <div className="flex flex-col justify-center">
             {/* Dane wystawiającego fakturę */}
+            <h2 className="font-bold text-2xl mb-5">
+              Dane wystawiającego fakturę
+            </h2>
             <article className="md:grid grid-cols-2 gap-10">
               <div className="flex flex-col">
                 <label htmlFor="name" className="font-bold">
@@ -214,7 +217,10 @@ function App() {
             </article>
 
             {/* Informacje o kliencie */}
-            <article className="md:grid grid-cols-2 gap-x-10 md:mt-20">
+            <h2 className="font-bold text-2xl mb-5 md:mt-20">
+              Informacje klienta
+            </h2>
+            <article className="md:grid grid-cols-2 gap-x-10 ">
               <div className="flex flex-col">
                 <label htmlFor="clientName" className="font-bold">
                   Podaj nazwę firmy klienta
@@ -261,6 +267,7 @@ function App() {
             </article>
 
             {/* Informacje o fakturze */}
+            <h2 className="font-bold text-2xl mb-5">Dane faktury</h2>
             <article className="grid grid-cols-3 gap-10">
               <div className="flex flex-col">
                 <label htmlFor="invoiceNumber" className="font-bold">

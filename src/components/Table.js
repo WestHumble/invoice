@@ -45,7 +45,7 @@ export default function Table({ list, total }) {
 
       <div>
         <h2 className="flex items-end justify-end text-grey-800 text-4xl font-bold">
-          {total.toLocaleString()} zł
+          Do zapłaty {total.toLocaleString()} zł
         </h2>
       </div>
     </>
