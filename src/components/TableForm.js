@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 export default function TableForm({
   nazwa,
@@ -19,30 +20,40 @@ export default function TableForm({
   setWarBrutto,
   list,
   setList,
+  total,
+  setTotal,
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  //Funkcja wysyłanie formularza
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newItems = {
-      id: uuidv4(),
-      nazwa,
-      ilosc,
-      vat,
-      cenaNetto,
-      warNetto,
-      kwotaVat,
-      warBrutto,
-    };
-    setNazwa("");
-    setIlosc("");
-    setVat("");
-    setCenaNetto("");
-    setWarNetto("");
-    setKwotaVat("");
-    setWarBrutto("");
-    setList([...list, newItems]);
-    console.log(list);
+    if (!nazwa && !ilosc && !vat && !cenaNetto) {
+      alert("Proszę uzupełnij dane");
+    } else {
+      const newItems = {
+        id: uuidv4(),
+        nazwa,
+        ilosc,
+        vat,
+        cenaNetto,
+        warNetto,
+        kwotaVat,
+        warBrutto,
+      };
+      setNazwa("");
+      setIlosc("");
+      setVat("");
+      setCenaNetto("");
+      setWarNetto("");
+      setKwotaVat("");
+      setWarBrutto("");
+      setList([...list, newItems]);
+      setIsEditing(false);
+    }
   };
+
+  //Obliczanie wartości Brutto produktu
   useEffect(() => {
     const calcWarNetto = (warNetto) => {
       setWarNetto(cenaNetto * ilosc);
@@ -60,6 +71,34 @@ export default function TableForm({
     };
     calcWarBrutto(warBrutto);
   }, [warNetto, cenaNetto, ilosc, vat]);
+
+  //Obliczanie sumy wszystkich pozycji w tabeli
+  useEffect(() => {
+    let rows = document.querySelectorAll(".totalBrutto");
+    let sum = 0;
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].className === "totalBrutto") {
+        sum += isNaN(rows[i].innerHTML) ? 0 : parseInt(rows[i].innerHTML);
+        setTotal(sum);
+      }
+    }
+  });
+
+  // Funkcja edycji
+  const editRow = (id) => {
+    const editingRow = list.find((row) => row.id === id);
+    setList(list.filter((row) => row.id !== id));
+    setIsEditing(true);
+    setNazwa(editingRow.nazwa);
+    setIlosc(editingRow.ilosc);
+    setVat(editingRow.vat);
+    setCenaNetto(editingRow.cenaNetto);
+    setWarBrutto(editingRow.warBrutto);
+    setKwotaVat(editingRow.kwotaVat);
+    setWarBrutto(editingRow.warBrutto);
+  };
+  // Funkcja usuwania
+  const deleteRow = (id) => setList(list.filter((row) => row.id !== id));
 
   return (
     <>
@@ -126,13 +165,13 @@ export default function TableForm({
           type="submit"
           className="mb-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300"
         >
-          Dodaj pozycje
+          {isEditing ? "Edytuj pozycje faktury" : "Dodaj pozycję do faktury"}
         </button>
       </form>
 
       {/* Dodane pozycje tabelka*/}
 
-      <table width="100%" className="mb-10">
+      <table width="100%" className="mb-10 text-center">
         <thead>
           <tr className="bg-gray-200">
             <th>Nazwa</th>
@@ -164,13 +203,28 @@ export default function TableForm({
                   <td>{cenaNetto}</td>
                   <td>{warNetto}</td>
                   <td>{kwotaVat}</td>
-                  <td>{warBrutto}</td>
+                  <td className="totalBrutto">{warBrutto}</td>
+                  <td>
+                    <button onClick={() => deleteRow(id)}>
+                      <AiFillDelete className="text-red-500 font-bold text-xl" />
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => editRow(id)}>
+                      <AiFillEdit className="text-blue-500 font-bold text-xl" />
+                    </button>
+                  </td>
                 </tr>
               </React.Fragment>
             )
           )}
         </tbody>
       </table>
+      <div>
+        <h2 className="flex items-end justify-end mb-5 text-grey-800 text-4xl font-bold">
+          {total.toLocaleString()} zł
+        </h2>
+      </div>
     </>
   );
 }
