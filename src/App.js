@@ -43,33 +43,18 @@ function App() {
     window.print();
   };
 
-  useEffect(() => {
-    setName("FirmaX");
-    setNip("781 000 40 10");
-    setAddress("Poznań");
-    setEmail("testowy@gmail.com");
-    setPhone("700200200");
-    setBankName("PKO");
-    setBankAccount("76 1000 1010 1010 1000 1010 1010");
-    setClientName("Klient");
-    setClientNip("781 100 45 45");
-    setClientAddress("Dąbrowskiego 56");
-    setInvoiceNumber("F/140930/2022");
-    setNotes("Notatka testowa");
-  }, []);
-
   return (
     <main className="m-5 p-5 md:max-w-xl md:mx-auto lg:max-w-2xl xl:max-w-4xl bg-white rounded shadow">
-      <ReactToPrint
-        trigger={() => (
-          <button className="mb-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">
-            Drukuj / Pobierz
-          </button>
-        )}
-        content={() => componentRef.current}
-      />
       {showInvoice ? (
         <>
+          <ReactToPrint
+            trigger={() => (
+              <button className="ml-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">
+                Drukuj / Pobierz
+              </button>
+            )}
+            content={() => componentRef.current}
+          />
           <div ref={componentRef} className="m-5">
             <Header handlePrint={handlePrint} />
             <MainDetails name={name} address={address} nip={nip} />

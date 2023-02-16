@@ -28,7 +28,7 @@ export default function TableForm({
   //Funkcja wysyłanie formularza
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!nazwa && !ilosc && !vat && !cenaNetto) {
+    if (!nazwa || !ilosc || !vat || !cenaNetto) {
       alert("Proszę uzupełnij dane");
     } else {
       const newItems = {
