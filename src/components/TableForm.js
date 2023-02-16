@@ -54,8 +54,9 @@ export default function TableForm({
     };
     calcKwotaVat(kwotaVat);
 
+    const wszystko = parseFloat(cenaNetto) + parseFloat(kwotaVat);
     const calcWarBrutto = (warBrutto) => {
-      setWarBrutto(warNetto + kwotaVat);
+      setWarBrutto((wszystko * ilosc).toFixed(2));
     };
     calcWarBrutto(warBrutto);
   }, [warNetto, cenaNetto, ilosc, vat]);
