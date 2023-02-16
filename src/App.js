@@ -33,6 +33,7 @@ function App() {
   const [warNetto, setWarNetto] = useState("");
   const [kwotaVat, setKwotaVat] = useState("");
   const [warBrutto, setWarBrutto] = useState("");
+  const [list, setList] = useState([]);
 
   const handlePrint = () => {
     window.print();
@@ -77,6 +78,8 @@ function App() {
             warNetto={warNetto}
             kwotaVat={kwotaVat}
             warBrutto={warBrutto}
+            list={list}
+            setList={setList}
           />
           <Notes notes={notes} />
           <Footer
@@ -321,6 +324,8 @@ function App() {
                 setKwotaVat={setKwotaVat}
                 warBrutto={warBrutto}
                 setWarBrutto={setWarBrutto}
+                list={list}
+                setList={setList}
               />
             </article>
 

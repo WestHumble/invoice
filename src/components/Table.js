@@ -1,16 +1,8 @@
 import React from "react";
 
-export default function Table({
-  nazwa,
-  ilosc,
-  vat,
-  cenaNetto,
-  warNetto,
-  kwotaVat,
-  warBrutto,
-}) {
+export default function Table({ list }) {
   return (
-    <table width="100%">
+    <table width="100%" className="mb-10">
       <thead>
         <tr className="bg-gray-200">
           <th>Nazwa</th>
@@ -23,15 +15,30 @@ export default function Table({
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{nazwa}</td>
-          <td>{ilosc}</td>
-          <td>{vat}</td>
-          <td>{cenaNetto}</td>
-          <td>{warNetto}</td>
-          <td>{kwotaVat}</td>
-          <td>{warBrutto}</td>
-        </tr>
+        {list.map(
+          ({
+            id,
+            nazwa,
+            ilosc,
+            vat,
+            cenaNetto,
+            warNetto,
+            kwotaVat,
+            warBrutto,
+          }) => (
+            <React.Fragment key={id}>
+              <tr>
+                <td>{nazwa}</td>
+                <td>{ilosc}</td>
+                <td>{vat}</td>
+                <td>{cenaNetto}</td>
+                <td>{warNetto}</td>
+                <td>{kwotaVat}</td>
+                <td>{warBrutto}</td>
+              </tr>
+            </React.Fragment>
+          )
+        )}
       </tbody>
     </table>
   );
