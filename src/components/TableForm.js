@@ -206,7 +206,7 @@ export default function TableForm({
                   <td className="px-6 py-4">{cenaNetto}</td>
                   <td className="px-6 py-4">{warNetto}</td>
                   <td className="px-6 py-4">{kwotaVat}</td>
-                  <td className="totalBrutto px-6 py-4">{warBrutto}</td>
+                  <td className="totalBrutto">{warBrutto}</td>
                   <td>
                     <button onClick={() => deleteRow(id)}>
                       <AiFillDelete className="text-red-500 font-bold text-xl" />
